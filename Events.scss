@@ -1,0 +1,138 @@
+import { CompetenceProps } from "components/Stack/Stack";
+
+import "./style.scss";
+
+interface CompetenciesProps {
+  competencies: CompetenceProps[];
+}
+
+const Competencies = ({ competencies }: CompetenciesProps) => {
+  return (
+    <div className="competencies">
+      <p className="competencies__title">Компетенции</p>
+
+      <form action="">
+        <ul className="competencies__list">
+          {competencies.map((competence: CompetenceProps) => (
+            <li key={competence.id} className="competencies__item">
+              <label className="competencies__label" htmlFor={competence.name}>
+                {competence.name}
+                <input
+                  className="competencies__input"
+                  type="checkbox"
+                  id={competence.name}
+                  name={competence.name}
+                  defaultChecked={competence.checked}
+                />
+                <span className="competencies__checkmark"></span>
+              </label>
+            </li>
+          ))}
+        </ul>
+
+        <button className="competencies__submit" type="submit">
+ Выбрать
+        </button>
+      </form>
+    </div>
+  );
+};
+
+export default Competencies;
+.competencies {
+  width: 720px;
+  background-color: #ffffff;
+  box-shadow: 0px 11px 23.200000762939453px 0px #101a2040;
+  border-radius: 5px;
+  padding: 32px 30px 42px;
+
+  &__title {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 21px;
+    color: #000000;
+    margin-bottom: 24px;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(12, 40px);
+    column-gap: 46px;
+    margin-bottom: 9px;
+    min-height: 509px;
+  }
+
+  &__submit {
+    width: 216px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16px;
+    padding: 8px 18px;
+    height: 36px;
+    background-color: #6dc7fa;
+    border-radius: 72px;
+    text-align: center;
+    border: 1px solid #57bef8;
+    color: #ffffff;
+  }
+
+  &__label {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  &__input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+
+  &__checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: inherit;
+    border: 1px solid #000000;
+    border-radius: 2px;
+
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+  }
+
+  &__label:hover .competencies__input ~ .competencies__checkmark {
+    background-color: #eeeeee;
+  }
+
+  &__label .competencies__input:checked ~ .competencies__checkmark {
+    background-color: inherit;
+  }
+
+  &__label .competencies__input:checked ~ .competencies__checkmark:after {
+    display: block;
+  }
+
+  &__label .competencies__checkmark:after {
+    left: 50%;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    background-color: #57bef8;
+    transform: translate(-50%, -50%);
+  }
+}

@@ -1,0 +1,16 @@
+          type="number"
+              name="age-from"
+              id="age-from"
+              min={18}
+              defaultValue={18}
+              className="filter__age-input"
+            />
+          </div>
+              name="age-up-to"
+              id="age-up-to"
+              className="filter__age-input"
+              min={18}
+              defaultValue={24}
+            />
+          </div>
+        </div>
